@@ -1,5 +1,3 @@
-package ru.netology.delivery.data;
-
 import com.github.javafaker.Faker;
 import lombok.Value;
 import lombok.val;
@@ -9,26 +7,26 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Random;
 
+
 public class DataGenerator {
-    private DataGenerator() {
-    }
+    private DataGenerator() {}
 
     public static String generateDate(int shift) {
-        return LocalDate.now().plusDays(shift).format(DataTimeFomatter.ofPattern("dd.MM.yyyy"));
+        return new LocalDate.now().plusDays(shift).format(DataTimeFomatter.ofPattern("dd.MM.yyyy"));
     }
 
     public static String generateCity() {
-       var cities = new String[]{"Екатеринбург", "Пермь", "Тюмень", "Серов", "Москва"}
+        String[] cities = new String[]{"Екатеринбург", "Пермь", "Тюмень", "Серов", "Москва"}
         return cities[new Random().nextInt(cities.length)];
     }
 
     public static String generateName(String locale) {
-        var faker = new Faker(new Locale(locale));
-        return faker.name().lastName()+ "  " + faker.name().firstName();
+        Faker faker = new Faker(new Locale(locale));
+        return faker.name().lastName() + "  " + faker.name().firstName();
     }
 
     public static String generatePhone(String locale) {
-        var faker = new Faker(new Locale(locale));
+        Faker faker = new Faker(new Locale(locale));
         return faker.phoneNumber().phoneNumber();
     }
 
@@ -37,7 +35,7 @@ public class DataGenerator {
         }
 
         public static UserInfo generateUser(String locale) {
-            return new UserInfo(generateCity(), generateName(locale),generatePhone(locale));
+            return new UserInfo(generateCity(), generateName(locale), generatePhone(locale));
         }
     }
 
